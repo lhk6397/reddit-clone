@@ -79,15 +79,19 @@ const Layout = async ({
                 </dd>
               </div>
 
-              {subreddit.creatorId === session?.user.id ? (
+              {subreddit.creatorId === session?.user.id && (
                 <div className="flex justify-between gap-x-4 py-3">
                   <p className="text-gray-500">You created this community</p>
                 </div>
-              ) : null}
+              )}
 
-              {subreddit.creatorId !== session?.user.id ? (
-                <SubscribeLeaveToggle />
-              ) : null}
+              {subreddit.creatorId !== session?.user.id && (
+                <SubscribeLeaveToggle
+                  isSubscribed={isSubscribed}
+                  subredditId={subreddit.id}
+                  subredditName={subreddit.name}
+                />
+              )}
             </dl>
           </div>
         </div>

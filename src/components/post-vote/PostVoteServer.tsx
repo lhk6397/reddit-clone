@@ -10,8 +10,6 @@ interface PostVoteServerProps {
   getData?: () => Promise<(Post & { votes: Vote[] }) | null>;
 }
 
-const wait = (ms: number) => new Promise((res) => setTimeout(res, ms));
-
 const PostVoteServer = async ({
   postId,
   initialVotesAmt,
@@ -24,7 +22,6 @@ const PostVoteServer = async ({
   let _currentVote: VoteType | null | undefined = undefined;
 
   if (getData) {
-    await wait(2000);
     const post = await getData();
     if (!post) return notFound();
 
